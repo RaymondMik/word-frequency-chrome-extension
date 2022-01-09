@@ -43,18 +43,16 @@ function parseTextSelection() {
             return acc;
          }, '');
 
-      const rangeAt = selection.getRangeAt(0); //get the text range
+      const rangeAt = selection.getRangeAt(0);
       const selectionPosition = rangeAt.getBoundingClientRect();
-
-      console.log(999, selectionPosition);
       
       const paragraph = document.createElement("div");
       paragraph.id = 'most-used-words-output';
       paragraph.innerHTML = output;
       paragraph.style.width = '200px';
       paragraph.style.position = 'fixed';
-      paragraph.style.top = selectionPosition.top + 'px';
-      paragraph.style.left = selectionPosition.left - 215 + 'px';
+      paragraph.style.top = window.innerHeight - selectionPosition.bottom < 250 ? selectionPosition.top - 230 + 'px' : selectionPosition.top + 'px';
+      paragraph.style.left = selectionPosition.left < 200 ? selectionPosition.right + 15 + 'px' : selectionPosition.left - 215 + 'px';
       paragraph.style.backgroundColor = 'white';
       paragraph.style.padding = '10px';
       paragraph.style.borderRadius = '5px';

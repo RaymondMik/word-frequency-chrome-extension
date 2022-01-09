@@ -1,12 +1,17 @@
 {
-   "name": "Most Common Word",
-   "description": "Select some text and see what's the most used word there!",
+   "name": "Word Frequency counter",
+   "description": "Select some text and check what's the most frequent word in there!",
    "options_page": "options.html",
    "version": "1.0",
    "manifest_version": 3,
    "action": {
      "default_popup": "popup.html",
-     "default_icon": "icon.png"
+     "default_icon": {
+      "16": "/images/icon48.png",
+      "32": "/images/icon48.png",
+      "48": "/images/icon48.png",
+      "128": "/images/icon128.png"
+    }
    },
    "background": {
       "service_worker": "background.js"
