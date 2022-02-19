@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <link rel="stylesheet" href="popup.css">
+      <style>
+         section.find-word-frequency {
+            width: 200px;
+            background-color: white;
+            border: 1px solid white;
+            border-radius: 4px;
+         }
+      </style>
    </head>
    <body>
-      <div class="container">
-      <header>
-         <h2>Most common word</h2>
-      </header>
-      <section>
-         <span id="toggle-text">OFF</span>
-         <label class="switch">
-            <input type="checkbox" id="toggle">
-            <span class="slider"></span>
-          </label>
+      <section class="find-word-frequency">
+          <p>To use this extension, select a group of words, right click, and select the <b>"Find Word Frequency"</b> option in the menu.</p>
       </section>
-      </div>
-      <script src="popup.js"></script>
    </body>
 </html>
