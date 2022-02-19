@@ -6,7 +6,7 @@
 chrome.runtime.onInstalled.addListener(function() {
   chrome.contextMenus.create({
     id: 'findWordFrequencyChromExtension',
-    title: 'Find Word Frequency',
+    title: 'Check Word Frequency',
     contexts: ['all']
   });
 });

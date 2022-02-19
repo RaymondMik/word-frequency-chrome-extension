@@ -1,14 +1,13 @@
 /*
  * fg.js -- a content script for a minimal ManifestV3 test extension.
  */
-chrome.runtime.onMessage.addListener( (req, snd, rsp) => {
+chrome.runtime.onMessage.addListener(() => {
     parseTextSelection();
 } );
 
 function parseTextSelection() {
    const toggle = document.getElementById('toggle');
    const toggleText = document.getElementById('toggle-text');
-   console.log("APP RUNNING");
  
    const selection = document.getSelection();
    const selectedText = selection.toString();
@@ -20,6 +19,7 @@ function parseTextSelection() {
 
    for (let i = 0; i < selectedTextArray.length; i++) {
       const parsedWord = selectedTextArray[i].replace(/[.,:;!?\n]$/, '').toLowerCase();
+      console.log(parsedWord)
 
       if (parsedWord.match(/[\n]/)) {
          parsedWord.split('\n').forEach((word) => {
@@ -43,9 +43,9 @@ function parseTextSelection() {
    const output = Object.entries(words)
       .sort((a, b) => b[1] - a[1])
       .reduce((acc, [a, b], index) => {
-         if (index === 0) acc = `<h5>Most used words:</h5><hr>`
+         if (index === 0) acc = `<h5 style="font-size: 15px;">Word frequency:</h5><hr>`
          if (index < 15) acc += `<b>${a}</b>: ${b.toString()}<br/>`
-         if (index === Object.entries(words).length - 1) acc += `<br/><b>Words: </b>${selectedTextArray.length}<br/><b>Characters: </b>${selectedText.length}`
+         if (index === Object.entries(words).length - 1) acc += `<br/><b>Words: </b>${Object.keys(words).length}<br/><b>Characters: </b>${selectedText.length}`
          
          return acc;
       }, '');
@@ -60,9 +60,10 @@ function parseTextSelection() {
    paragraph.style.position = 'fixed';
    paragraph.style.top = window.innerHeight - selectionPosition.bottom < 250 ? selectionPosition.top - 230 + 'px' : selectionPosition.top + 'px';
    paragraph.style.left = selectionPosition.left < 200 ? selectionPosition.right + 15 + 'px' : selectionPosition.left - 215 + 'px';
-   paragraph.style.backgroundColor = 'white';
    paragraph.style.padding = '10px';
-   paragraph.style.borderRadius = '5px';
+   paragraph.style.fontSize = '14px';
+   paragraph.style.backgroundColor = 'white';
+   paragraph.style.borderRadius = '6px';
    paragraph.style.boxShadow = '1px 4px 15px #555';
    paragraph.style.zIndex = '1000';
 
@@ -71,6 +72,8 @@ function parseTextSelection() {
    }
 
    document.addEventListener('click', () => {
-      document.body.removeChild(paragraph);
+      if (paragraph) {
+         document.body.removeChild(paragraph);
+      }
    })
 }
