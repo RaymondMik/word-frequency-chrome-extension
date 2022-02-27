@@ -19,7 +19,6 @@ function parseTextSelection() {
 
    for (let i = 0; i < selectedTextArray.length; i++) {
       const parsedWord = selectedTextArray[i].replace(/[.,:;!?\n]$/, '').toLowerCase();
-      console.log(parsedWord)
 
       if (parsedWord.match(/[\n]/)) {
          parsedWord.split('\n').forEach((word) => {
